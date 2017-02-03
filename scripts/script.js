@@ -19,6 +19,7 @@ var brickPadding = 10
 var brickOffsetTop = 30
 var brickOffsetLeft = 30
 var score = 0
+var lives = 3
 
 var bricks = []
 for (var c = 0; c < brickColumnCount; c++) {
@@ -120,6 +121,12 @@ function drawScore () {
   ctx.fillText('Score: ' + score, 8, 20)
 }
 
+function drawLives () {
+  ctx.font = '16px Arial'
+  ctx.fillStyle = '#0095DD'
+  ctx.fillText('Lives: ' + lives, canvas.width - 65, 20)
+}
+
 function draw () {
   // clearRect method clears the canvas after every interval
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -127,6 +134,7 @@ function draw () {
   drawPaddle()
   drawBricks()
   drawScore()
+  drawLives()
   collisionDetection()
 
   if (y + dy < ballRadius) {
@@ -135,8 +143,17 @@ function draw () {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy
     } else {
-      alert('Game Over')
-      document.location.reload()
+      lives--
+      if (lives === 0) {
+        alert('Game Over')
+        document.location.reload()
+      } else {
+        x = canvas.width / 2
+        y = canvas.height - 30
+        dx = 2
+        dy = -2
+        paddleX = (canvas.width - paddleWidth) / 2
+      }
     }
   }
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -153,6 +170,8 @@ function draw () {
 
   x += dx
   y += dy
+  // improve animation - give power to browser to determine rendering
+  // requestAnimationFrame(draw)
 }
 
 document.addEventListener('mousemove', mouseMoveHandler)
@@ -163,5 +182,7 @@ function mouseMoveHandler (e) {
     paddleX = relativeX - paddleWidth / 2
   }
 }
+
+// draw()
 
 setInterval(draw, 10)
