@@ -1,9 +1,23 @@
+body {
+  background-color: #F02C35;
+}
 * {
   padding: 0;
   margin: 0;
 }
 
+.title {
+  margin: 0 auto;
+  text-align: center;
+  color: #10D357;
+
+  font-family: 'Bangers', cursive;
+  font-size: 270px;
+
+}
+
 #myCanvas {
+  top: 300px;
   background: #eee;
   display: block;
   margin: 0 auto;

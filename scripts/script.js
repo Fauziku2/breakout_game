@@ -25,7 +25,11 @@ var bricks = []
 for (var c = 0; c < brickColumnCount; c++) {
   bricks[c] = []
   for (var r = 0; r < brickRowCount; r++) {
-    bricks[c][r] = {x: 0, y: 0, status: 1}
+    bricks[c][r] = {
+      x: 0,
+      y: 0,
+      status: 1
+    }
   }
 }
 
@@ -81,7 +85,7 @@ function keyUpHandler (e) {
 
 function drawBall () {
   ctx.beginPath()
-  // position = (x = 50, y = 50) radius = 10, full circle = Math.PI * 2
+    // position = (x = 50, y = 50) radius = 10, full circle = Math.PI * 2
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2)
   ctx.fillStyle = '#0095DD'
   ctx.fill()
@@ -170,8 +174,8 @@ function draw () {
 
   x += dx
   y += dy
-  // improve animation - give power to browser to determine rendering
-  // requestAnimationFrame(draw)
+    // improve animation - give power to browser to determine rendering
+    // requestAnimationFrame(draw)
 }
 
 document.addEventListener('mousemove', mouseMoveHandler)
